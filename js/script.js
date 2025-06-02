@@ -3,19 +3,26 @@ const hiddenInput = document.getElementById('hidden-input');
 const typedText = document.getElementById('typed-text');
 const terminalWrapper = document.querySelector('.terminal-wrapper');
 
-// Fokuskan input saat klik area input-line
+// Fokus ke input saat klik
 inputLine.addEventListener('click', () => {
   hiddenInput.focus();
 });
 
-// Update teks saat diketik
+// Tampilkan teks yang diketik
 hiddenInput.addEventListener('input', () => {
   typedText.textContent = hiddenInput.value;
 });
 
-// Fokus otomatis saat halaman dimuat
+// Fokus otomatis dan pusatkan box saat load
 window.addEventListener('load', () => {
   hiddenInput.focus();
+
+  const rect = terminalWrapper.getBoundingClientRect();
+  const centerX = window.innerWidth / 2 - rect.width / 2;
+  const centerY = window.innerHeight / 2 - rect.height / 2;
+
+  terminalWrapper.style.left = `${centerX}px`;
+  terminalWrapper.style.top = `${centerY}px`;
 });
 
 // ==== DRAG FUNCTION ====
